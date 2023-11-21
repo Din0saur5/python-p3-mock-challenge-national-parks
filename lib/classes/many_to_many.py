@@ -1,14 +1,15 @@
 
 from datetime import datetime
+
 class NationalPark:
-    
-    #all for most visited bonus fn
+       
+#all for most visited bonus fn
     all= []
     def __init__(self, name):
         self.name = name
         type(self).all.append(self)
         
-    # validate name input        
+# validate name input        
     @property
     def name(self):
         return self._name    
@@ -38,9 +39,11 @@ class NationalPark:
     def most_visited(cls):
         best = sorted(cls.all, key=lambda n: n.total_visits(), reverse = True)
         return best[0] if len(best) >0 else None
+   
             
 
 class Trip:
+    
     all =[]
     def __init__(self, visitor, national_park, start_date, end_date):
         self.visitor = visitor
@@ -99,12 +102,15 @@ class Trip:
             self._national_park = national_park
         else:
             raise Exception('Not a National Park')
+   
+   
         
 class Visitor:
 
     def __init__(self, name):
         self.name = name
- # validate name input        
+
+# validate name input        
     @property
     def name(self):
         return self._name    
@@ -114,12 +120,15 @@ class Visitor:
             self._name = name
         else:
             raise Exception('name must be str and btw 1-15 char')
- # standard list comp to get all trips for visitor      
+
+# standard list comp to get all trips for visitor      
     def trips(self):
         return [trip for trip in Trip.all if trip.visitor is self]
+    
 # same list comp and set magic as before    
     def national_parks(self):
         return list({trip.national_park for trip in Trip.all if trip.visitor is self})
+    
 # good filter fn to use in prev fn     
     def total_visits_at_park(self, park):
         return len([trip for trip in self.trips() if trip.national_park is park])
