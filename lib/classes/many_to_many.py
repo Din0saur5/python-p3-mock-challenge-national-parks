@@ -1,8 +1,7 @@
 
 from datetime import datetime
 
-class NationalPark:
-       
+class NationalPark:    
 #all for most visited bonus fn
     all= []
     def __init__(self, name):
